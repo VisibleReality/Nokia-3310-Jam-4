@@ -11,6 +11,8 @@ public abstract class InputHandler : MonoBehaviour
 		cameraManager = GameObject.Find("Main Camera").GetComponent<CameraManager>();
 	}
 
+	public abstract void OnFocus ();
+
 	public abstract void OnSelect ();
 
 	public abstract void OnUp ();

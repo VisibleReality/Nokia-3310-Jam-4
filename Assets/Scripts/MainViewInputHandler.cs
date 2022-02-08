@@ -11,6 +11,10 @@ public class MainViewInputHandler : InputHandler
 		base.Start();
 	}
 
+	public override void OnFocus ()
+	{
+	}
+
 	public override void OnSelect ()
 	{
 		gameManager.GrowPlant();
@@ -18,12 +22,10 @@ public class MainViewInputHandler : InputHandler
 
 	public override void OnUp ()
 	{
-		
 	}
 
 	public override void OnDown ()
 	{
-		
 	}
 
 	public override void OnLeft ()
@@ -33,6 +35,5 @@ public class MainViewInputHandler : InputHandler
 
 	public override void OnRight ()
 	{
-		
 	}
 }

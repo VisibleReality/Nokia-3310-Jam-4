@@ -5,10 +5,11 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 	public Data gameData;
-	public Text counterText;
 	public Upgrade[] upgrades;
 
 	[SerializeField] private double growthSpeed;
+
+	public string FormattedHeightString { get; private set; }
 
 	private void Start ()
 	{
@@ -22,7 +23,7 @@ public class GameManager : MonoBehaviour
 
 		gameData.plantHeight += growthSpeed * Time.deltaTime;
 
-		counterText.text = Utilities.GetFormattedHeightString(gameData.plantHeight);
+		FormattedHeightString = Utilities.GetFormattedHeightString(gameData.plantHeight);
 	}
 
 	private void RecalculateGrowthSpeed ()

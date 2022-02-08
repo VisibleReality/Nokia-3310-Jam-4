@@ -23,7 +23,7 @@ public class Upgrade
 		this.growthPerUnit = growthPerUnit;
 	}
 
-	public double GetCurrentCost (int currentUnitCount)
+	public double GetCurrentCost (long currentUnitCount)
 	{
 		return baseCost * Math.Pow(costMultiplier, currentUnitCount);
 	}

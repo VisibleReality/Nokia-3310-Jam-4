@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 public static class Utilities
@@ -25,14 +26,20 @@ public static class Utilities
 		var heightRestricted = height / Math.Pow(1000, logBase1000Floor);
 
 		if (heightRestricted < 10) // Height is 1 digit long (1.3)
-			return $"{heightRestricted:0.000} {units[(int)logBase1000Floor]}";
+			return $"{RoundDown(heightRestricted, 3):0.000} {units[(int)logBase1000Floor]}";
 
 		if (heightRestricted < 100) // Height is 2 digits long (2.2)
-			return $"{heightRestricted:00.00} {units[(int)logBase1000Floor]}";
+			return $"{RoundDown(heightRestricted, 2):00.00} {units[(int)logBase1000Floor]}";
 
 		if (heightRestricted < 1000) // Height is 3 digits long (3.1)
-			return $"{heightRestricted:000.0} {units[(int)logBase1000Floor]}";
+			return $"{RoundDown(heightRestricted, 1):000.0} {units[(int)logBase1000Floor]}";
 
 		return $"{height:G4} m"; // Fallback if something goes wrong
+	}
+
+	private static double RoundDown (double number, double numPlaces)
+	{
+		var power = Math.Pow(10, numPlaces);
+		return Math.Floor(number * power) / power;
 	}
 }

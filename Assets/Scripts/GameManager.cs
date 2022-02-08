@@ -7,10 +7,9 @@ public class GameManager : MonoBehaviour
 	public Data gameData;
 	public Text counterText;
 	public Upgrade[] upgrades;
-	
-	[SerializeField]
-	private double growthSpeed;
-	
+
+	[SerializeField] private double growthSpeed;
+
 	private void Start ()
 	{
 		gameData = new Data(upgrades.Length);
@@ -22,27 +21,18 @@ public class GameManager : MonoBehaviour
 		RecalculateGrowthSpeed();
 
 		gameData.plantHeight += growthSpeed * Time.deltaTime;
-		
+
 		counterText.text = Utilities.GetFormattedHeightString(gameData.plantHeight);
 	}
 
 	private void RecalculateGrowthSpeed ()
 	{
 		growthSpeed = 0;
-		for (var i = 0; i < upgrades.Length; i++)
-		{
-			growthSpeed += upgrades[i].growthPerUnit * gameData.upgradeCounts[i];
-		}
+		for (var i = 0; i < upgrades.Length; i++) growthSpeed += upgrades[i].growthPerUnit * gameData.upgradeCounts[i];
 	}
-	
-	private void OnSelect ()
+
+	public void GrowPlant ()
 	{
 		gameData.plantHeight += 0.01;
 	}
-
-	private void OnUp ()
-	{
-		gameData.upgradeCounts[0] += 1;
-	}
-	
 }

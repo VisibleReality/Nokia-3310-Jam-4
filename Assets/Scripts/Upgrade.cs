@@ -4,17 +4,15 @@ using UnityEngine;
 [Serializable]
 public class Upgrade
 {
-	public String name;
-	public String description;
+	public string name;
+	public string description;
 	public Texture icon;
 	public double growthPerUnit;
-	
-	[SerializeField]
-	private double baseCost;
-	[SerializeField]
-	private double costMultiplier;
-	
-	public Upgrade (String name, String description, Texture icon, double baseCost, double costMultiplier,
+
+	[SerializeField] private double baseCost;
+	[SerializeField] private double costMultiplier;
+
+	public Upgrade (string name, string description, Texture icon, double baseCost, double costMultiplier,
 		double growthPerUnit)
 	{
 		this.name = name;

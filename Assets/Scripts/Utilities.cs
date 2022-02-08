@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class Utilities
 {
-	public static string[] units = new[] { "m", "km", "Mm", "Gm", "Tm", "Pm", "Em", "Zm", "Ym" };
+	public static readonly string[] units = { "m", "km", "Mm", "Gm", "Tm", "Pm", "Em", "Zm", "Ym" };
 
 	public static string GetFormattedHeightString (double height)
 	{
@@ -20,7 +20,7 @@ public static class Utilities
 		}
 
 		// General cases
-		double logBase1000Floor = Math.Floor(Math.Log(height, 1000));
+		var logBase1000Floor = Math.Floor(Math.Log(height, 1000));
 
 		if (logBase1000Floor > 8) // If we dont' have enough metric prefixes, fall back to scientific notation
 		{
@@ -28,7 +28,7 @@ public static class Utilities
 		}
 
 		// Otherwise, calculate height so it's always less than 3 digits long by dividing by a power of 1000
-		double heightRestricted = height / Math.Pow(1000, logBase1000Floor);
+		var heightRestricted = height / Math.Pow(1000, logBase1000Floor);
 
 		if (heightRestricted < 10) // Height is 1 digit long (1.3)
 		{

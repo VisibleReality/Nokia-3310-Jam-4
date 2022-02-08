@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 	private void RecalculateGrowthSpeed ()
 	{
 		growthSpeed = 0;
-		for (int i = 0; i < upgrades.Length; i++)
+		for (var i = 0; i < upgrades.Length; i++)
 		{
 			growthSpeed += upgrades[i].growthPerUnit * gameData.upgradeCounts[i];
 		}

@@ -8,12 +8,12 @@ public static class Utilities
 
 	public static string GetFormattedHeightString (double height)
 	{
+		height /= 100;
+		
 		// Special cases
 
 		if (height < 1) // Less than 1 m
 		{
-			Debug.Log($"{height:G17}");
-			Debug.Log($"{height * 100:G17}");
 			return $"{Math.Floor(height * 100):#0} cm";
 		}
 

@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 	public Upgrade[] upgrades;
 
 	[SerializeField] private double growthSpeed;
+	[SerializeField] private double clickGrowth;
 
 	public string FormattedHeightString { get; private set; }
 
@@ -35,6 +36,6 @@ public class GameManager : MonoBehaviour
 
 	public void GrowPlant ()
 	{
-		gameData.plantHeight += 0.01;
+		gameData.plantHeight += clickGrowth;
 	}
 }

@@ -1924,16 +1924,17 @@ MonoBehaviour:
   - name: Upgrade One
     description: This upgrade gives you 1 cm every 2 seconds.
     icon: {fileID: 2800000, guid: dca4cbf6d6ee9ca4d8a8149c2337c20b, type: 3}
-    growthPerUnit: 0.005
+    growthPerUnit: 0.5
     baseCost: 10
     costMultiplier: 1.5
   - name: Upgrade Two
     description: This upgrade gives you 5 cm every second.
     icon: {fileID: 2800000, guid: 30052de8ee8396d4a92858f31ed1bf9b, type: 3}
-    growthPerUnit: 0.05
+    growthPerUnit: 5
     baseCost: 100
     costMultiplier: 1.5
   growthSpeed: 0
+  clickGrowth: 1
 --- !u!4 &1773430241
 Transform:
   m_ObjectHideFlags: 0

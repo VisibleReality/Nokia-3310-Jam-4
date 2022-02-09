@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,7 @@ public class UpgradesViewInputHandler : InputHandler
 	[SerializeField] private Text upgradeCountText;
 	[SerializeField] private Text upgradeCostText;
 	[SerializeField] private Text upgradeDescriptionText;
-	[SerializeField] private Image upgradeIcon;
+	[SerializeField] private RawImage upgradeIcon;
 
 	[SerializeField] private Image scrollUpIndicator;
 	[SerializeField] private Image scrollDownIndicator;
@@ -21,6 +22,7 @@ public class UpgradesViewInputHandler : InputHandler
 	[SerializeField] private Image buyMaxButton;
 
 	private Upgrade currentUpgrade;
+	private long currentUpgradeCount;
 	private int currentPage;
 	private int lastPage;
 
@@ -34,22 +36,39 @@ public class UpgradesViewInputHandler : InputHandler
 
 		upgradeTitleText.text = currentUpgrade.name;
 		upgradeDescriptionText.text = currentUpgrade.description;
+		upgradeIcon.texture = currentUpgrade.icon;
 		
 		RefreshCostAndCount();
 	}
 
 	private void RefreshCostAndCount ()
 	{
-		var currentUpgradeCount = gameManager.gameData.upgradeCounts[currentPage];
+		currentUpgradeCount = gameManager.gameData.upgradeCounts[currentPage];
 
 		upgradeCountText.text = $"Owned: {currentUpgradeCount}";
 		upgradeCostText.text = $"Cost: {currentUpgrade.GetCurrentCost(currentUpgradeCount)}";
 	}
 
+	private void Update ()
+	{
+		if (currentUpgrade.GetCurrentCost(currentUpgradeCount) < gameManager.gameData.plantHeight)
+		{
+			buyButton.enabled = false;
+			buyMaxButton.enabled = false;
+		}
+		else
+		{
+			buyButton.enabled = true;
+			buyMaxButton.enabled = true;
+		}
+	}
+
 	private new void Start ()
 	{
-		lastPage = gameManager.upgrades.Length - 1;
 		base.Start();
+		
+		lastPage = gameManager.upgrades.Length - 1;
+		SetPage(0);
 	}
 
 	public override void OnFocus ()
@@ -59,14 +78,23 @@ public class UpgradesViewInputHandler : InputHandler
 
 	public override void OnSelect ()
 	{
+		
 	}
 
 	public override void OnUp ()
 	{
+		if (currentPage != 0)
+		{
+			SetPage(currentPage - 1);
+		}
 	}
 
 	public override void OnDown ()
 	{
+		if (currentPage != lastPage)
+		{
+			SetPage(currentPage + 1);
+		}
 	}
 
 	public override void OnLeft ()

@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 		gameData.plantHeight += growthSpeed * Time.deltaTime;
 
 		FormattedHeightString = Utilities.GetFormattedHeightString(gameData.plantHeight);
+
 	}
 
 	private void RecalculateGrowthSpeed ()

@@ -11,7 +11,11 @@ public static class Utilities
 		// Special cases
 
 		if (height < 1) // Less than 1 m
+		{
+			Debug.Log($"{height:G17}");
+			Debug.Log($"{height * 100:G17}");
 			return $"{Math.Floor(height * 100):#0} cm";
+		}
 
 		if (height < 10) // Less than 10 m (so that only 2 decimal places are displayed in this special case)
 			return $"{height:0.00} m";

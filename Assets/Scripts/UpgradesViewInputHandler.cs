@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +23,8 @@ public class UpgradesViewInputHandler : InputHandler
 	private int currentPage;
 	private int lastPage;
 
+	private bool inDetailsView;
+	
 	private void SetPage (int page)
 	{
 		currentPage = page;
@@ -37,7 +36,7 @@ public class UpgradesViewInputHandler : InputHandler
 		upgradeTitleText.text = currentUpgrade.name;
 		upgradeDescriptionText.text = currentUpgrade.description;
 		upgradeIcon.texture = currentUpgrade.icon;
-		
+
 		RefreshCostAndCount();
 	}
 
@@ -46,12 +45,18 @@ public class UpgradesViewInputHandler : InputHandler
 		currentUpgradeCount = gameManager.gameData.upgradeCounts[currentPage];
 
 		upgradeCountText.text = $"Owned: {currentUpgradeCount}";
-		upgradeCostText.text = $"Cost: {currentUpgrade.GetCurrentCost(currentUpgradeCount)}";
+		upgradeCostText.text =
+			$"Cost: {Utilities.GetFormattedHeightString(currentUpgrade.GetCurrentCost(currentUpgradeCount))}";
+	}
+
+	private bool CanAffordCurrentUpgrade ()
+	{
+		return currentUpgrade.GetCurrentCost(currentUpgradeCount) <= gameManager.gameData.plantHeight;
 	}
 
 	private void Update ()
 	{
-		if (currentUpgrade.GetCurrentCost(currentUpgradeCount) < gameManager.gameData.plantHeight)
+		if (!CanAffordCurrentUpgrade())
 		{
 			buyButton.enabled = false;
 			buyMaxButton.enabled = false;
@@ -66,7 +71,8 @@ public class UpgradesViewInputHandler : InputHandler
 	private new void Start ()
 	{
 		base.Start();
-		
+
+		inDetailsView = false;
 		lastPage = gameManager.upgrades.Length - 1;
 		SetPage(0);
 	}
@@ -78,12 +84,27 @@ public class UpgradesViewInputHandler : InputHandler
 
 	public override void OnSelect ()
 	{
-		
+		if (CanAffordCurrentUpgrade())
+		{
+			if (!inDetailsView)
+			{
+				gameManager.BuyUpgrade(currentPage);
+				RefreshCostAndCount();
+			}
+			else
+			{
+				while (CanAffordCurrentUpgrade())
+				{
+					gameManager.BuyUpgrade(currentPage);
+					RefreshCostAndCount();
+				}
+			}
+		}
 	}
 
 	public override void OnUp ()
 	{
-		if (currentPage != 0)
+		if (currentPage != 0 && !inDetailsView)
 		{
 			SetPage(currentPage - 1);
 		}
@@ -91,7 +112,7 @@ public class UpgradesViewInputHandler : InputHandler
 
 	public override void OnDown ()
 	{
-		if (currentPage != lastPage)
+		if (currentPage != lastPage && !inDetailsView)
 		{
 			SetPage(currentPage + 1);
 		}
@@ -99,10 +120,23 @@ public class UpgradesViewInputHandler : InputHandler
 
 	public override void OnLeft ()
 	{
+		if (!inDetailsView)
+		{
+			inDetailsView = true;
+			cameraManager.MoveCameraToObject(detailsView);
+		}
 	}
 
 	public override void OnRight ()
 	{
-		cameraManager.ChangeContext(mainView);
+		if (!inDetailsView)
+		{
+			cameraManager.ChangeContext(mainView);
+		}
+		else
+		{
+			inDetailsView = false;
+			cameraManager.MoveCameraToObject(gameObject);
+		}
 	}
 }

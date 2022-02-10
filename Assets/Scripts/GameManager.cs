@@ -1,3 +1,6 @@
+using System.Collections;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,22 +13,45 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private double growthSpeed;
 	[SerializeField] private double clickGrowth;
 
+	[SerializeField] private float autoSaveTime;
+	[SerializeField] private float iconStayTime;
+
+	[SerializeField] private SpriteRenderer autoSaveIcon;
+
 	public string FormattedHeightString { get; private set; }
 
 	private void Start ()
 	{
-		gameData = new Data(upgrades.Length);
+		gameData = InitialLoader.gameData ?? new Data(upgrades.Length);
+		StartCoroutine(nameof(SaveGame));
 	}
 
 	private void Update ()
 	{
-		// TODO: make this run only on upgrade purchase
-		RecalculateGrowthSpeed();
-
 		gameData.plantHeight += growthSpeed * Time.deltaTime;
 
 		FormattedHeightString = Utilities.GetFormattedHeightString(gameData.plantHeight);
+	}
+	
+	// ReSharper disable once IteratorNeverReturns
+	private IEnumerator SaveGame ()
+	{
+		while (true)
+		{
+			yield return new WaitForSeconds(autoSaveTime);
+			
+			autoSaveIcon.enabled = true;
 
+			BinaryFormatter bf = new BinaryFormatter();
+			using (FileStream saveFile = File.Create($"{Application.persistentDataPath}/{InitialLoader.saveFileName}"))
+			{
+				bf.Serialize(saveFile, gameData);
+			}
+			
+			yield return new WaitForSeconds(iconStayTime); // keep save icon on screen for a bit of time
+			autoSaveIcon.enabled = false;
+		}
+		
 	}
 
 	private void RecalculateGrowthSpeed ()
@@ -37,5 +63,12 @@ public class GameManager : MonoBehaviour
 	public void GrowPlant ()
 	{
 		gameData.plantHeight += clickGrowth;
+	}
+
+	public void BuyUpgrade (int upgradeIndex)
+	{
+		gameData.plantHeight -= upgrades[upgradeIndex].GetCurrentCost(gameData.upgradeCounts[upgradeIndex]);
+		gameData.upgradeCounts[upgradeIndex] += 1;
+		RecalculateGrowthSpeed();
 	}
 }

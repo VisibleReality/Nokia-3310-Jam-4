@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 	private void Start ()
 	{
 		gameData = InitialLoader.gameData ?? new Data(upgrades.Length);
+		RecalculateGrowthSpeed();
 		StartCoroutine(nameof(AutoSaveLoop));
 	}
 
@@ -75,17 +76,23 @@ public class GameManager : MonoBehaviour
 		gameData.upgradeCounts[upgradeIndex] += 1;
 		RecalculateGrowthSpeed();
 	}
-	
+
 	public void SaveGameAsync ()
 	{
 		StartCoroutine(nameof(SaveGameCoroutine));
 	}
 
-	public void SaveGame ()
+	private void SaveGame ()
 	{
-		BinaryFormatter bf = new BinaryFormatter();
+		var bf = new BinaryFormatter();
 		Directory.CreateDirectory(Application.persistentDataPath);
-		using FileStream saveFile = File.Create($"{Application.persistentDataPath}/{GlobalConfig.saveFileName}");
+		using var saveFile =
+			File.Create(Path.Combine(Application.persistentDataPath, GlobalConfig.saveFileName));
 		bf.Serialize(saveFile, gameData);
+
+#if UNITY_WEBGL
+		PlayerPrefs.SetString("forceSave", string.Empty); // Force save on webGL, otherwise idbfs won't save the data.
+		PlayerPrefs.Save();
+#endif
 	}
 }

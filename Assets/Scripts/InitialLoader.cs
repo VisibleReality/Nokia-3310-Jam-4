@@ -13,8 +13,8 @@ public class InitialLoader : MonoBehaviour
 		if (File.Exists($"{Application.persistentDataPath}/{GlobalConfig.saveFileName}"))
 		{
 			BinaryFormatter bf = new BinaryFormatter();
-			using (FileStream saveFile = File.Open($"{Application.persistentDataPath}/{GlobalConfig.saveFileName}",
-				       FileMode.Open))
+			using (FileStream saveFile =
+			       File.Open(Path.Combine(Application.persistentDataPath, GlobalConfig.saveFileName), FileMode.Open))
 			{
 				gameData = (Data)bf.Deserialize(saveFile);
 			}

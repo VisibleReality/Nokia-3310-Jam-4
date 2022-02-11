@@ -37,7 +37,7 @@ public class StatsViewInputHandler : InputHandler
 	private string GenerateStats ()
 	{
 		var statsString = "";
-
+		
 		statsString += $"Growth speed: {Utilities.GetFormattedHeightString(gameManager.GrowthSpeed)}/s\n";
 
 		statsString += "Upgrade counts:\n";

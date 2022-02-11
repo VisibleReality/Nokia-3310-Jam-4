@@ -1,16 +1,15 @@
+using System;
 using System.Collections;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using Unity.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
 	public Data gameData;
 	public Upgrade[] upgrades;
 
-	[SerializeField] private double growthSpeed;
+
 	[SerializeField] private double clickGrowth;
 
 	[SerializeField] private float autoSaveTime;
@@ -18,46 +17,51 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField] private SpriteRenderer autoSaveIcon;
 
+	public double GrowthSpeed { get; private set; }
 	public string FormattedHeightString { get; private set; }
 
 	private void Start ()
 	{
 		gameData = InitialLoader.gameData ?? new Data(upgrades.Length);
-		StartCoroutine(nameof(SaveGame));
+		StartCoroutine(nameof(AutoSaveLoop));
 	}
 
 	private void Update ()
 	{
-		gameData.plantHeight += growthSpeed * Time.deltaTime;
+		gameData.plantHeight += GrowthSpeed * Time.deltaTime;
 
 		FormattedHeightString = Utilities.GetFormattedHeightString(gameData.plantHeight);
 	}
-	
+
+	private void OnApplicationQuit ()
+	{
+		SaveGame();
+	}
+
 	// ReSharper disable once IteratorNeverReturns
-	private IEnumerator SaveGame ()
+	private IEnumerator AutoSaveLoop ()
 	{
 		while (true)
 		{
 			yield return new WaitForSeconds(autoSaveTime);
-			
-			autoSaveIcon.enabled = true;
-
-			BinaryFormatter bf = new BinaryFormatter();
-			using (FileStream saveFile = File.Create($"{Application.persistentDataPath}/{InitialLoader.saveFileName}"))
-			{
-				bf.Serialize(saveFile, gameData);
-			}
-			
-			yield return new WaitForSeconds(iconStayTime); // keep save icon on screen for a bit of time
-			autoSaveIcon.enabled = false;
+			StartCoroutine(nameof(SaveGameCoroutine));
 		}
-		
+	}
+
+	private IEnumerator SaveGameCoroutine ()
+	{
+		autoSaveIcon.enabled = true;
+
+		SaveGame();
+
+		yield return new WaitForSeconds(iconStayTime); // keep save icon on screen for a bit of time
+		autoSaveIcon.enabled = false;
 	}
 
 	private void RecalculateGrowthSpeed ()
 	{
-		growthSpeed = 0;
-		for (var i = 0; i < upgrades.Length; i++) growthSpeed += upgrades[i].growthPerUnit * gameData.upgradeCounts[i];
+		GrowthSpeed = 0;
+		for (var i = 0; i < upgrades.Length; i++) GrowthSpeed += upgrades[i].growthPerUnit * gameData.upgradeCounts[i];
 	}
 
 	public void GrowPlant ()
@@ -70,5 +74,18 @@ public class GameManager : MonoBehaviour
 		gameData.plantHeight -= upgrades[upgradeIndex].GetCurrentCost(gameData.upgradeCounts[upgradeIndex]);
 		gameData.upgradeCounts[upgradeIndex] += 1;
 		RecalculateGrowthSpeed();
+	}
+	
+	public void SaveGameAsync ()
+	{
+		StartCoroutine(nameof(SaveGameCoroutine));
+	}
+
+	public void SaveGame ()
+	{
+		BinaryFormatter bf = new BinaryFormatter();
+		Directory.CreateDirectory(Application.persistentDataPath);
+		using FileStream saveFile = File.Create($"{Application.persistentDataPath}/{GlobalConfig.saveFileName}");
+		bf.Serialize(saveFile, gameData);
 	}
 }

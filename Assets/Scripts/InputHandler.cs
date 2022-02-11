@@ -2,8 +2,8 @@ using UnityEngine;
 
 public abstract class InputHandler : MonoBehaviour
 {
-	protected GameManager gameManager;
-	protected CameraManager cameraManager;
+	protected static GameManager gameManager;
+	protected static CameraManager cameraManager;
 
 	protected void Start ()
 	{

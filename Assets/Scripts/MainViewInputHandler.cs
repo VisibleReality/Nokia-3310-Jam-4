@@ -5,12 +5,8 @@ using UnityEngine;
 public class MainViewInputHandler : InputHandler
 {
 	[SerializeField] private InputHandler upgradesView;
-
-	private new void Start ()
-	{
-		base.Start();
-	}
-
+	[SerializeField] private InputHandler statsView;
+	
 	public override void OnFocus ()
 	{
 	}
@@ -35,5 +31,6 @@ public class MainViewInputHandler : InputHandler
 
 	public override void OnRight ()
 	{
+		cameraManager.ChangeContext(statsView);
 	}
 }

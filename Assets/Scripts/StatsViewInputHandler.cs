@@ -58,6 +58,7 @@ public class StatsViewInputHandler : InputHandler
 	public override void OnSelect ()
 	{
 		gameManager.SaveGameAsync();
+		cameraManager.PlaySound(1);
 	}
 
 	public override void OnUp ()
@@ -65,6 +66,11 @@ public class StatsViewInputHandler : InputHandler
 		if (statsTextTransform.position.y > statsTextTopPosition)
 		{
 			statsTextTransform.position += new Vector3(0, -6, 0);
+			cameraManager.PlaySound(0);
+		}
+		else
+		{
+			cameraManager.PlaySound(2);
 		}
 	}
 
@@ -73,18 +79,25 @@ public class StatsViewInputHandler : InputHandler
 		if (statsTextTransform.position.y < statsTextBottomPosition)
 		{
 			statsTextTransform.position += new Vector3(0, 6, 0);
+			cameraManager.PlaySound(0);
+		}
+		else
+		{
+			cameraManager.PlaySound(2);
 		}
 	}
 
 	public override void OnLeft ()
 	{
 		cameraManager.ChangeContext(mainView);
+		cameraManager.PlaySound(0);
 	}
 
 	public override void OnRight ()
 	{
 		if (Application.platform != RuntimePlatform.WebGLPlayer)
 		{
+			cameraManager.PlaySound(0);
 			Debug.Log("Exiting!");
 			Application.Quit();
 		}

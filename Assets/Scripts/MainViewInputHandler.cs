@@ -31,6 +31,7 @@ public class MainViewInputHandler : InputHandler
 
 	public override void OnSelect ()
 	{
+		cameraManager.PlaySound(0);
 		gameManager.GrowPlant();
 	}
 
@@ -44,11 +45,13 @@ public class MainViewInputHandler : InputHandler
 
 	public override void OnLeft ()
 	{
+		cameraManager.PlaySound(0);
 		cameraManager.ChangeContext(upgradesView);
 	}
 
 	public override void OnRight ()
 	{
+		cameraManager.PlaySound(0);
 		cameraManager.ChangeContext(statsView);
 	}
 }

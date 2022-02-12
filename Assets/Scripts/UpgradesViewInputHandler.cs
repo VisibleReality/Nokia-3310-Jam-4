@@ -24,7 +24,7 @@ public class UpgradesViewInputHandler : InputHandler
 	private int lastPage;
 
 	private bool inDetailsView;
-	
+
 	private void SetPage (int page)
 	{
 		currentPage = page;
@@ -86,6 +86,7 @@ public class UpgradesViewInputHandler : InputHandler
 	{
 		if (CanAffordCurrentUpgrade())
 		{
+			cameraManager.PlaySound(1);
 			if (!inDetailsView)
 			{
 				gameManager.BuyUpgrade(currentPage);
@@ -100,13 +101,22 @@ public class UpgradesViewInputHandler : InputHandler
 				}
 			}
 		}
+		else
+		{
+			cameraManager.PlaySound(2);
+		}
 	}
 
 	public override void OnUp ()
 	{
 		if (currentPage != 0 && !inDetailsView)
 		{
+			cameraManager.PlaySound(0);
 			SetPage(currentPage - 1);
+		}
+		else
+		{
+			cameraManager.PlaySound(2);
 		}
 	}
 
@@ -114,7 +124,12 @@ public class UpgradesViewInputHandler : InputHandler
 	{
 		if (currentPage != lastPage && !inDetailsView)
 		{
+			cameraManager.PlaySound(0);
 			SetPage(currentPage + 1);
+		}
+		else
+		{
+			cameraManager.PlaySound(2);
 		}
 	}
 
@@ -122,6 +137,7 @@ public class UpgradesViewInputHandler : InputHandler
 	{
 		if (!inDetailsView)
 		{
+			cameraManager.PlaySound(0);
 			inDetailsView = true;
 			cameraManager.MoveCameraToObject(detailsView);
 		}
@@ -131,10 +147,12 @@ public class UpgradesViewInputHandler : InputHandler
 	{
 		if (!inDetailsView)
 		{
+			cameraManager.PlaySound(0);
 			cameraManager.ChangeContext(mainView);
 		}
 		else
 		{
+			cameraManager.PlaySound(0);
 			inDetailsView = false;
 			cameraManager.MoveCameraToObject(gameObject);
 		}

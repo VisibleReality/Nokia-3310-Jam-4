@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -5,6 +6,9 @@ public class CameraManager : MonoBehaviour
 {
 	[SerializeField] private InputHandler currentInputHandler;
 	[SerializeField] private Vector3 cameraPositionOffset;
+
+	[SerializeField] private AudioSource audioSource;
+	[SerializeField] private AudioClip[] beeps;
 
 	public void ChangeContext (InputHandler inputHandler)
 	{
@@ -16,6 +20,12 @@ public class CameraManager : MonoBehaviour
 	public void MoveCameraToObject (GameObject target)
 	{
 		transform.position = target.transform.position + cameraPositionOffset;
+	}
+
+	public void PlaySound (int soundId)
+	{
+		audioSource.clip = beeps[soundId];
+		audioSource.Play();
 	}
 
 	[UsedImplicitly]

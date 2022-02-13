@@ -12,6 +12,16 @@ public static class Utilities
 		
 		// Special cases
 
+		if (height < 0.001) // Less than 0.1 cm
+		{
+			return "0 cm";
+		}
+		
+		if (height < 0.01) // Less than 1 cm
+		{
+			return $"{height * 100:0.0} cm";
+		}
+		
 		if (height < 1) // Less than 1 m
 		{
 			return $"{Math.Floor(height * 100):#0} cm";

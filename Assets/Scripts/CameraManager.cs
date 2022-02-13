@@ -57,4 +57,10 @@ public class CameraManager : MonoBehaviour
 	{
 		currentInputHandler.OnRight();
 	}
+
+	[UsedImplicitly]
+	private void OnToggleMute ()
+	{
+		audioSource.mute = !audioSource.mute;
+	}
 }

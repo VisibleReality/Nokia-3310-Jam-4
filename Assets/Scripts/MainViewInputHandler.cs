@@ -27,6 +27,7 @@ public class MainViewInputHandler : InputHandler
 
 	public override void OnFocus ()
 	{
+		gameManager.SaveGameAsync();
 	}
 
 	public override void OnSelect ()

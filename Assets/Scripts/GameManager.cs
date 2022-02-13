@@ -24,6 +24,11 @@ public class GameManager : MonoBehaviour
 	{
 		gameData = InitialLoader.gameData ?? new Data(upgrades.Length);
 		RecalculateGrowthSpeed();
+
+		var secondsSinceSave = (DateTime.Now - gameData.saveTime).TotalSeconds;
+
+		gameData.plantHeight += GrowthSpeed * secondsSinceSave;
+		
 		StartCoroutine(nameof(AutoSaveLoop));
 	}
 
@@ -84,6 +89,8 @@ public class GameManager : MonoBehaviour
 
 	private void SaveGame ()
 	{
+		gameData.saveTime = DateTime.Now;
+		
 		var bf = new BinaryFormatter();
 		Directory.CreateDirectory(Application.persistentDataPath);
 		using var saveFile =

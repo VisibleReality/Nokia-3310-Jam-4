@@ -7,6 +7,7 @@ public class UpgradesViewInputHandler : InputHandler
 	[SerializeField] private GameObject detailsView;
 
 	[SerializeField] private Text upgradeTitleText;
+	[SerializeField] private Text upgradeGrowthText;
 	[SerializeField] private Text upgradeCountText;
 	[SerializeField] private Text upgradeCostText;
 	[SerializeField] private Text upgradeDescriptionText;
@@ -32,8 +33,8 @@ public class UpgradesViewInputHandler : InputHandler
 		scrollDownIndicator.enabled = page != lastPage;
 
 		currentUpgrade = gameManager.upgrades[page];
-
 		upgradeTitleText.text = currentUpgrade.name;
+		upgradeGrowthText.text = $"Adds {Utilities.GetFormattedHeightString(currentUpgrade.growthPerUnit)}/s";
 		upgradeDescriptionText.text = currentUpgrade.description;
 		upgradeIcon.texture = currentUpgrade.icon;
 

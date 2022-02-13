@@ -730,7 +730,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1684662386}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -805,7 +805,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1684662386}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1043,7 +1043,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1684662386}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1287,11 +1287,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1684662386}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -8}
+  m_AnchoredPosition: {x: 0, y: -14}
   m_SizeDelta: {x: 82, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &495479802
@@ -1327,7 +1327,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: 'Cost: 10 cm Save Quit'
+  m_Text: 'Cost: 10 cm'
 --- !u!222 &495479803
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1366,7 +1366,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1684662386}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1600,7 +1600,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2007,8 +2007,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -27}
-  m_SizeDelta: {x: 82, y: 80}
+  m_AnchoredPosition: {x: 0, y: -39}
+  m_SizeDelta: {x: 82, y: 104}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &648298554
 GameObject:
@@ -2190,12 +2190,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1684662386}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8, y: -2}
-  m_SizeDelta: {x: 66, y: 6}
+  m_AnchoredPosition: {x: 0, y: -8}
+  m_SizeDelta: {x: 82, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &830795266
 MonoBehaviour:
@@ -2239,6 +2239,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830795264}
   m_CullTransparentMesh: 1
+--- !u!1 &887932377
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 887932380}
+  - component: {fileID: 887932379}
+  - component: {fileID: 887932378}
+  m_Layer: 5
+  m_Name: Upgrade Growth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &887932378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887932377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.2627451, g: 0.32156864, b: 0.2392157, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 36983ac9282d03d41882b89974ec71aa, type: 2}
+    m_FontSize: 5
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 85
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Adds 1 cm/s
+--- !u!222 &887932379
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887932377}
+  m_CullTransparentMesh: 1
+--- !u!224 &887932380
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887932377}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1684662386}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -8, y: -2}
+  m_SizeDelta: {x: 66, y: 6}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &929373989
 GameObject:
   m_ObjectHideFlags: 0
@@ -2852,7 +2931,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1684662386}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3173,6 +3252,7 @@ MonoBehaviour:
   mainView: {fileID: 63856934}
   detailsView: {fileID: 929373989}
   upgradeTitleText: {fileID: 1468020150}
+  upgradeGrowthText: {fileID: 887932378}
   upgradeCountText: {fileID: 830795266}
   upgradeCostText: {fileID: 495479802}
   upgradeDescriptionText: {fileID: 1945840633}
@@ -3257,6 +3337,7 @@ RectTransform:
   - {fileID: 344882700}
   - {fileID: 1701979288}
   - {fileID: 1468020149}
+  - {fileID: 887932380}
   - {fileID: 830795265}
   - {fileID: 495479801}
   - {fileID: 327874482}
@@ -3452,18 +3533,86 @@ MonoBehaviour:
     plantHeight: 0
     upgradeCounts: 
   upgrades:
-  - name: Upgrade One
-    description: This upgrade gives you 1 cm every 2 seconds.
-    icon: {fileID: 2800000, guid: dca4cbf6d6ee9ca4d8a8149c2337c20b, type: 3}
-    growthPerUnit: 0.5
-    baseCost: 15
+  - name: Watering Can
+    description: A bit more water won't hurt the growth of your plant.
+    icon: {fileID: 2800000, guid: 5770e84e6a9db7b4db0574c591e74c24, type: 3}
+    growthPerUnit: 0.2
+    baseCost: 10
     costMultiplier: 1.15
-  - name: Upgrade Two
-    description: This upgrade gives you 5 cm every second.
-    icon: {fileID: 2800000, guid: 30052de8ee8396d4a92858f31ed1bf9b, type: 3}
-    growthPerUnit: 5
+  - name: Fertiliser
+    description: Giving your plant access to more nutrients will surely help it's
+      growth.
+    icon: {fileID: 2800000, guid: 9f1426fae4849fe4b84c2ed83a9484d5, type: 3}
+    growthPerUnit: 1.8
     baseCost: 100
-    costMultiplier: 1.2
+    costMultiplier: 1.15
+  - name: Old Friend
+    description: Hire an old friend of yours to help you grow your plant.
+    icon: {fileID: 2800000, guid: 372342279d7978c48b94e7374561dd4d, type: 3}
+    growthPerUnit: 16
+    baseCost: 1000
+    costMultiplier: 1.15
+  - name: Nutrient Supplement
+    description: These supplements are specifically engineered to make your plant
+      grow as tall as possible.
+    icon: {fileID: 2800000, guid: 808be97b4b7bad14084f27acf864d76b, type: 3}
+    growthPerUnit: 140
+    baseCost: 10000
+    costMultiplier: 1.15
+  - name: Gardener
+    description: Hire a professional gardener to tend to your plant.
+    icon: {fileID: 2800000, guid: 006828f7c52a6bb4baf1d91288714be9, type: 3}
+    growthPerUnit: 1200
+    baseCost: 100000
+    costMultiplier: 1.15
+  - name: Irrigation System
+    description: A special pipe system to deliver your plant all the water it needs.
+    icon: {fileID: 2800000, guid: ebfc77b95ec8cf9468a3e9a80d106eea, type: 3}
+    growthPerUnit: 10000
+    baseCost: 1000000
+    costMultiplier: 1.15
+  - name: RoboGardener
+    description: This new innovation is several orders of magnitude faster than the
+      gardener you hired earlier.
+    icon: {fileID: 2800000, guid: 0c21b0b0226503f47a230c19c94d5970, type: 3}
+    growthPerUnit: 80000
+    baseCost: 10000000
+    costMultiplier: 1.15
+  - name: Stabilising Beam
+    description: As your plant grows taller, it becomes weaker. These metal beams
+      reinforce your plant's structure.
+    icon: {fileID: 2800000, guid: dca4cbf6d6ee9ca4d8a8149c2337c20b, type: 3}
+    growthPerUnit: 600000
+    baseCost: 100000000
+    costMultiplier: 1.15
+  - name: Genetic Enrichment
+    description: These experimental genetic enhancements are designed to significantly
+      enhance your plant's growth.
+    icon: {fileID: 2800000, guid: 23e55cd26d18e3f4d89bb45c87293aea, type: 3}
+    growthPerUnit: 4000000
+    baseCost: 1000000000
+    costMultiplier: 1.15
+  - name: Rocket Boosters
+    description: A space agency is interested in selling you some rockets, to pull
+      your plant even higher.
+    icon: {fileID: 2800000, guid: cc3ecb641b9fa0843af39a6d7abd60b1, type: 3}
+    growthPerUnit: 20000000
+    baseCost: 10000000000
+    costMultiplier: 1.15
+  - name: Radiation Shields
+    description: Shielding your plant from space radiation will put more energy into
+      growing higher instead.
+    icon: {fileID: 2800000, guid: d68a7792129768d4cb82327e21143545, type: 3}
+    growthPerUnit: 100000000
+    baseCost: 100000000000
+    costMultiplier: 1.15
+  - name: Gravitational Distortion
+    description: This new tech manipulates gravity to grow your plant faster than
+      it ever has before.
+    icon: {fileID: 2800000, guid: 97b9a042a4fc422418e5d9210672235f, type: 3}
+    growthPerUnit: 800000000
+    baseCost: 1000000000000
+    costMultiplier: 1.15
   clickGrowth: 1
   autoSaveTime: 120
   iconStayTime: 0.5

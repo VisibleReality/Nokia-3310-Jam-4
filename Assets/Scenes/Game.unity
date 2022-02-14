@@ -3581,7 +3581,7 @@ MonoBehaviour:
   - name: Stabilising Beam
     description: As your plant grows taller, it becomes weaker. These metal beams
       reinforce your plant's structure.
-    icon: {fileID: 2800000, guid: dca4cbf6d6ee9ca4d8a8149c2337c20b, type: 3}
+    icon: {fileID: 2800000, guid: f05c7d63e1ae3da47aa0be5d05c3afaf, type: 3}
     growthPerUnit: 600000
     baseCost: 100000000
     costMultiplier: 1.15

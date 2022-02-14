@@ -53,6 +53,7 @@ public class StatsViewInputHandler : InputHandler
 	public override void OnFocus ()
 	{
 		statsText.text = GenerateStats();
+		statsTextTransform.position = new Vector3(100, statsTextTopPosition, 0);
 	}
 
 	public override void OnSelect ()

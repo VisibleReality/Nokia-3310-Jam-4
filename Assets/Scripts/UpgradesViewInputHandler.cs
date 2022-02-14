@@ -80,7 +80,6 @@ public class UpgradesViewInputHandler : InputHandler
 
 	public override void OnFocus ()
 	{
-		SetPage(0);
 	}
 
 	public override void OnSelect ()
